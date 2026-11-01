@@ -38,7 +38,11 @@ cat <<EOF
 ==================================================
 Le commissariat a recueilli plus de cent témoignages dans un seul gros fichier :
   $FICHIER
-Trop long pour tout lire ! Commandes utiles :
+  
+Trop long pour tout lire mais les policiers ont arrêtés d'interroger
+des personnes lorsqu'ils ont enfin trouvé un témoin utile.
+
+Commandes utiles :
   head -n 5 FICHIER   les 5 premières lignes
   tail -n 5 FICHIER   les 5 dernières lignes
   wc -l FICHIER       compter les lignes

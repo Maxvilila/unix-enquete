@@ -1,2 +1,46 @@
-# unix-enquete
-Jeu d'enquête policière en 5 niveaux pour découvrir les commandes de base d'UNIX
+# Enquête au musée : découvre UNIX en jouant
+
+Un diamant, l'« Étoile de Paris », a été volé au musée. Tu es l'inspecteur : résous l'affaire en 5 niveaux, uniquement avec des commandes UNIX.
+
+## Lancer le jeu
+
+Prérequis : un terminal Linux, macOS ou WSL avec bash.
+
+```bash
+git clone https://github.com/Maxvilila/unix-enquete.git
+cd unix-enquete
+bash jouer.sh
+```
+
+À chaque niveau, le jeu génère un dossier `enquete/` et affiche la mission et les commandes utiles. Quand tu penses avoir la réponse :
+
+```bash
+bash valider.sh MA_REPONSE
+```
+
+Si la réponse est bonne, le niveau suivant démarre automatiquement. Les réponses ne tiennent pas compte des majuscules.
+
+## Les 5 niveaux
+
+| Niveau | Titre | Commandes découvertes |
+|---|---|---|
+| 1 | Arrivée sur les lieux | `pwd`, `ls`, `cd`, `cat` |
+| 2 | Les témoignages | `head`, `tail`, `wc`, `less`, `man` |
+| 3 | Mise sous scellés | `ls -a`, `mkdir`, `cp`, `mv`, `rm`, `touch` |
+| 4 | Les badges du musée | `find`, `grep`, `\|`, `>`, `sort`, `wc` |
+| 5 | Le coffre du voleur | `ls -l`, `chmod`, `ps`, `kill` |
+
+## Commandes du jeu
+
+```bash
+bash jouer.sh          # relance le niveau en cours (le régénère)
+bash jouer.sh niveau 3 # va directement au niveau 3
+bash jouer.sh reset    # recommence depuis le début
+bash valider.sh REP    # valide la réponse du niveau en cours
+```
+
+Astuce : la progression est stockée dans le fichier caché `.progression`.
+
+## Pour l'enseignant
+
+Les solutions sont dans [SOLUTIONS.md](SOLUTIONS.md). Les réponses sont stockées sous forme de hachages SHA-256 dans `lib/commun.sh`. Les scripts des niveaux sont lisibles par les élèves : le jeu repose sur le fair-play.

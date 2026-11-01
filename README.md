@@ -39,8 +39,17 @@ bash jouer.sh reset    # recommence depuis le début
 bash valider.sh REP    # valide la réponse du niveau en cours
 ```
 
-Astuce : la progression est stockée dans le fichier caché `.progression`.
-
 ## Pour l'enseignant
 
-Les solutions sont dans [SOLUTIONS.md](SOLUTIONS.md). Les réponses sont stockées sous forme de hachages SHA-256 dans `lib/commun.sh`. Les scripts des niveaux sont lisibles par les élèves : le jeu repose sur le fair-play.
+- Les solutions sont dans [SOLUTIONS.md](SOLUTIONS.md).
+- Le code est entièrement commenté en français. Pour comprendre le bash utilisé, lis [GUIDE_BASH.md](GUIDE_BASH.md).
+- Les réponses sont écrites en clair dans `valider.sh` : le jeu repose sur le fair-play des élèves.
+
+## Organisation du code
+
+| Fichier | Rôle |
+|---|---|
+| `jouer.sh` | Point d'entrée : démarre ou reprend la partie |
+| `lancer.sh` | Prépare un niveau (nettoie, exécute le script du niveau, note la progression) |
+| `valider.sh` | Vérifie la réponse, puis passe au niveau suivant |
+| `niveaux/niveauN.sh` | Crée les fichiers et dossiers de l'enquête du niveau N |

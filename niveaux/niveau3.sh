@@ -1,27 +1,25 @@
-#!/usr/bin/env bash
-# Niveau 3 : ls -a, mkdir, cp, mv, rm, touch
+#!/bin/bash
+# =====================================================================
+# NIVEAU 3 : Mise sous scellés  (ls -a, mkdir, cp, mv, rm, touch)
+# Ce script crée un commissariat avec un fichier caché (son nom commence par un point).
+# Réponse attendue : GANT-NOIR  (+ les manipulations de fichiers, vérifiées par valider.sh)
+# =====================================================================
 
-niveau_verifier() {
-  local C="$ENQUETE/commissariat" ok=0
-  [ -d "$C/scelles" ]                          || { echo "${ROUGE}Il manque le dossier scelles/${RESET}"; ok=1; }
-  [ -f "$C/scelles/empreinte_scellee.txt" ]    || { echo "${ROUGE}Il manque scelles/empreinte_scellee.txt${RESET}"; ok=1; }
-  [ ! -e "$C/scelles/empreinte.txt" ]          || { echo "${ROUGE}scelles/empreinte.txt aurait dû être renommé${RESET}"; ok=1; }
-  [ -f "$C/preuves/empreinte.txt" ]            || { echo "${ROUGE}L'original preuves/empreinte.txt doit rester en place (copie, pas déplacement)${RESET}"; ok=1; }
-  [ ! -e "$C/preuves/brouillon.txt" ]          || { echo "${ROUGE}preuves/brouillon.txt n'a pas été supprimé${RESET}"; ok=1; }
-  [ -f "$C/scelles/rapport.txt" ]              || { echo "${ROUGE}Il manque scelles/rapport.txt${RESET}"; ok=1; }
-  return $ok
-}
+RACINE="$1"
+C="$RACINE/enquete/commissariat"
 
-niveau_creer() {
-  local C="$ENQUETE/commissariat"
-  mkdir -p "$C"/{bureau,preuves,archives}
-  echo "Empreinte digitale relevée sur la vitrine 7 : motif en boucle, pouce droit." > "$C/preuves/empreinte.txt"
-  echo "Photo 1 : vitrine brisée." > "$C/preuves/photo_01.txt"
-  echo "Photo 2 : traces de pas dans le couloir." > "$C/preuves/photo_02.txt"
-  echo "Brouillon à jeter : mauvaise piste, ne pas conserver." > "$C/preuves/brouillon.txt"
-  echo "Affaires classées 2019." > "$C/archives/classees.txt"
-  echo "Rien d'intéressant ici... regarde bien, certains fichiers se cachent." > "$C/bureau/note.txt"
-  cat > "$C/bureau/.carnet_secret" <<'EOF'
+mkdir -p "$C/bureau" "$C/preuves" "$C/archives"
+
+echo "Empreinte digitale relevée sur la vitrine 7 : motif en boucle, pouce droit." > "$C/preuves/empreinte.txt"
+echo "Photo 1 : vitrine brisée." > "$C/preuves/photo_01.txt"
+echo "Photo 2 : traces de pas dans le couloir." > "$C/preuves/photo_02.txt"
+echo "Brouillon à jeter : mauvaise piste, ne pas conserver." > "$C/preuves/brouillon.txt"
+echo "Affaires classées 2019." > "$C/archives/classees.txt"
+echo "Rien d'intéressant ici... regarde bien, certains fichiers se cachent." > "$C/bureau/note.txt"
+
+# Fichier CACHÉ : sous UNIX, un nom qui commence par "." est invisible avec un simple "ls".
+# Il faut faire "ls -a" pour le voir.
+cat > "$C/bureau/.carnet_secret" <<'EOF'
 CARNET DU COMMISSAIRE (confidentiel)
 Avant de donner le code de l'affaire, mets les preuves sous scellés :
  1. Crée un dossier "scelles" dans le dossier commissariat.      (mkdir)
@@ -32,8 +30,11 @@ Avant de donner le code de l'affaire, mets les preuves sous scellés :
 Code de l'affaire : GANT-NOIR
 EOF
 
-  entete 3 "Mise sous scellés"
-  cat <<EOF
+cat <<EOF
+
+==================================================
+  NIVEAU 3/5 : Mise sous scellés
+==================================================
 Le commissariat est ici : $C
 Un fichier caché traîne dans le bureau. Commandes utiles :
   ls -a                      voir aussi les fichiers cachés (commençant par un point)
@@ -45,4 +46,3 @@ Un fichier caché traîne dans le bureau. Commandes utiles :
 
 Mission : trouve le carnet caché, exécute les consignes, puis donne le code de l'affaire.
 EOF
-}

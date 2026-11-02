@@ -49,7 +49,6 @@ bash valider.sh REP    # valide la réponse du niveau en cours
 
 | Fichier | Rôle |
 |---|---|
-| `jouer.sh` | Point d'entrée : démarre ou reprend la partie |
-| `lancer.sh` | Prépare un niveau (nettoie, exécute le script du niveau, note la progression) |
-| `valider.sh` | Vérifie la réponse, puis passe au niveau suivant |
+| `jouer.sh` | Point d'entrée : choisit le niveau, prépare l'enquête (nettoie, exécute le script du niveau, note la progression) |
+| `valider.sh` | Vérifie la réponse, puis rappelle `jouer.sh` pour passer au niveau suivant |
 | `niveaux/niveauN.sh` | Crée les fichiers et dossiers de l'enquête du niveau N |

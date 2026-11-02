@@ -90,8 +90,8 @@ if [ "$NIVEAU" = "5" ]; then
   echo "*** AFFAIRE RÉSOLUE : le diamant est retrouvé et le coupable arrêté ! ***"
   echo "Tu connais maintenant les commandes de base d'UNIX. Félicitations, inspecteur !"
 else
-  # Sinon on lance le niveau suivant. $(( ... )) permet de faire un calcul.
+  # Sinon on lance le niveau suivant en rappelant jouer.sh. $(( ... )) permet de faire un calcul.
   SUIVANT=$((NIVEAU + 1))
   echo "Retourne à la racine du projet avec : cd $RACINE"
-  bash "$RACINE/lancer.sh" "$SUIVANT"
+  bash "$RACINE/jouer.sh" niveau "$SUIVANT"
 fi

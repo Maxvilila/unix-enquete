@@ -5,7 +5,7 @@
 # Réponse attendue : VITRINE-7
 # =====================================================================
 
-# $1 est le chemin du jeu, transmis par lancer.sh.
+# $1 est le chemin du jeu, transmis par jouer.sh.
 RACINE="$1"
 M="$RACINE/enquete/musee"     # M = dossier du musée (raccourci pour écrire moins)
 
